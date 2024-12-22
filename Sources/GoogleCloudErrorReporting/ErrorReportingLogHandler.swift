@@ -40,6 +40,10 @@ public struct ErrorReportingLogHandler: LogHandler {
         function: String,
         line: UInt
     ) {
+        guard level >= logLevel else {
+            return
+        }
+
         let date = Date()
         service.registerReport(task: Task(priority: .background) {
             do {
